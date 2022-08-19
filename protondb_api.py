@@ -37,7 +37,7 @@ def get_query():
     return query.lower()
 
 
-def get_data(query, num=5, err=5):
+def get_data(query, num=5, err=10):
     """Get appid."""
     f = open(JSON_FILE,)
     json_list = json.load(f)
