@@ -48,8 +48,8 @@ class KeywordQueryEventListener(EventListener):
         query = event.get_argument() or str()
         if len(query.strip()) == 0:
             return RenderResultListAction([
-                ExtensionResultItem(icon='icon.png',
-                                    name='No input',
+                ExtensionResultItem(icon='icon.svg',
+                                    name='Enter a search term',
                                     on_enter=HideWindowAction())
             ])
         else:
@@ -64,7 +64,7 @@ class KeywordQueryEventListener(EventListener):
                         description=f"{PDB}{i['appid']}",
                         on_enter=OpenUrlAction(f"{PDB}{i['appid']}")))
 
-            return RenderResultListAction(items)
+        return RenderResultListAction(items)
 
 
 if __name__ == '__main__':
