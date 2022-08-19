@@ -1,7 +1,6 @@
 import json
 import os
 import requests
-import sys
 import time
 
 JSON_FILE = os.path.join(os.path.dirname(__file__), 'steamapi.json')
@@ -25,35 +24,8 @@ def get_protondb(appid):
         return "Not Found"
 
 
-def get_query():
-    """Get search string."""
-    query = ''
-    n = len(sys.argv)
-    if n < 2:
-        sys.exit(0)
-    for i in range(1, n):
-        query += f"{sys.argv[i]} "
-    query.lower()
-    return query.lower()
-
-
-def get_data(query, num=5, err=10):
-    """Get appid."""
-    f = open(JSON_FILE,)
-    json_list = json.load(f)
-
-    # extract games data by query string
-    # and store it in a list
-    list = []
-    for i in range(1, len(json_list["applist"]['apps'])):
-        el = json_list["applist"]['apps'][i]
-        if query.lower().strip() in el['name'].lower().strip():
-            list.append([{'name': el['name'],
-                        'appid': el['appid'], 'len': len(el['name'])}])
-    # sort the list
-    list.sort(reverse=False, key=Sort)
-
-    # create json string
+def create_json(list, num, err):
+    """Create json string."""
     newj = []
     li = 0
     error = 0
@@ -72,5 +44,48 @@ def get_data(query, num=5, err=10):
             error += 1
             if error == err:
                 break
+    return newj
+
+
+def get_data_appid(query, num=5, err=10):
+    """Get data by appid."""
+    f = open(JSON_FILE,)
+    json_list = json.load(f)
+
+    # extract games data by query string
+    # and store it in a list
+    list = []
+    for i in range(1, len(json_list["applist"]['apps'])):
+        el = json_list["applist"]['apps'][i]
+        if str(query) == str(el['appid']):
+            list.append([{'name': el['name'],
+                        'appid': el['appid'], 'len': len(el['name'])}])
+    # sort the list
+    list.sort(reverse=False, key=Sort)
+
+    # create json string
+    newj = create_json(list, num, err)
+    # return json string
+    return json.dumps(newj)
+
+
+def get_data(query, num=5, err=10):
+    """Get data by string."""
+    f = open(JSON_FILE,)
+    json_list = json.load(f)
+
+    # extract games data by query string
+    # and store it in a list
+    list = []
+    for i in range(1, len(json_list["applist"]['apps'])):
+        el = json_list["applist"]['apps'][i]
+        if query.lower().strip() in el['name'].lower().strip():
+            list.append([{'name': el['name'],
+                        'appid': el['appid'], 'len': len(el['name'])}])
+    # sort the list
+    list.sort(reverse=False, key=Sort)
+
+    # create json string
+    newj = create_json(list, num, err)
     # return json string
     return json.dumps(newj)

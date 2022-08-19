@@ -16,6 +16,13 @@
             "default_value": "protondb"
         },
         {
+            "id": "appid",
+            "type": "keyword",
+            "name": "ProtonDB Appid Search",
+            "description": "Keyword to search by appid",
+            "default_value": "appid"
+        },
+        {
             "id": "search_results",
             "type": "input",
             "name": "Max number of search entries to show",

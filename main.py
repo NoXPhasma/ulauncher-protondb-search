@@ -1,6 +1,6 @@
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
-from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
+from ulauncher.api.shared.event import KeywordQueryEvent
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
@@ -44,6 +44,10 @@ class KeywordQueryEventListener(EventListener):
         """Query ProtonDB."""
         self.steam_api_check()
         num = int(extension.preferences['search_results'])
+        appid = extension.preferences['appid']
+        keyword = event.get_keyword() or str()
+        query = event.get_query() or str()
+        print(keyword)
         query = event.get_argument() or str()
         if len(query.strip()) == 0:
             return RenderResultListAction([
@@ -52,7 +56,10 @@ class KeywordQueryEventListener(EventListener):
                                     on_enter=HideWindowAction())
             ])
         else:
-            data = protondb_api.get_data(query, num)
+            if keyword == appid:
+                data = protondb_api.get_data_appid(query, num)
+            else:
+                data = protondb_api.get_data(query, num)
             items = []
             if data.strip() != '':
                 jdata = json.loads(data)
@@ -62,8 +69,7 @@ class KeywordQueryEventListener(EventListener):
                         name=f"[{i['pdb']}] {i['name']} ({i['appid']})",
                         description=f"{PDB}{i['appid']}",
                         on_enter=OpenUrlAction(f"{PDB}{i['appid']}")))
-
-        return RenderResultListAction(items)
+            return RenderResultListAction(items)
 
 
 if __name__ == '__main__':
