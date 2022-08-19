@@ -41,7 +41,7 @@ class KeywordQueryEventListener(EventListener):
             self.download_api()
 
     def on_event(self, event, extension):
-        """Query SteamDB."""
+        """Query ProtonDB."""
         self.steam_api_check()
         num = extension.preferences['search_results']
         print(num)
