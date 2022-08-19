@@ -1,0 +1,26 @@
+{
+    "required_api_version": "^2.0.0",
+    "name": "ProtonDB Search",
+    "description": "Search on ProtonDB",
+    "developer_name": "NoXPhasma",
+    "icon": "icon.svg",
+    "options": {
+        "query_debounce": 1
+    },
+    "preferences": [
+        {
+            "id": "keyword",
+            "type": "keyword",
+            "name": "ProtonDB Search",
+            "description": "Global keyword used by this extension",
+            "default_value": "protondb"
+        },
+        {
+            "id": "search_results",
+            "type": "input",
+            "name": "Max number of search entries to show",
+            "description": "Enter the maximum number of matching search results to show, default is 5",
+            "default_value": 5
+        }
+    ]
+}
