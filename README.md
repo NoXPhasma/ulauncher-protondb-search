@@ -7,7 +7,7 @@
 # Description
 Search for compatibility ratings on <a href="https://www.protondb.com/app/960090" target="_blank">ProtonDB</a> by string or Steam appid.
 
-`protondb Apex Legends`
+`protondb Apex Legends`<br>
 `appid 1172470`
 
 # Installation
