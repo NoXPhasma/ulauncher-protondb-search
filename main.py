@@ -43,8 +43,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         """Query ProtonDB."""
         self.steam_api_check()
-        num = extension.preferences['search_results']
-        print(num)
+        num = int(extension.preferences['search_results'])
         query = event.get_argument() or str()
         if len(query.strip()) == 0:
             return RenderResultListAction([
