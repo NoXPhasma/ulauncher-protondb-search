@@ -46,7 +46,6 @@ class KeywordQueryEventListener(EventListener):
         num = int(extension.preferences['search_results'])
         appid = extension.preferences['appid']
         keyword = event.get_keyword() or str()
-        query = event.get_query() or str()
         query = event.get_argument() or str()
         if len(query.strip()) == 0:
             return RenderResultListAction([
