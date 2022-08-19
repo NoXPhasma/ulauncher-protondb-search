@@ -12,7 +12,6 @@ import time
 import protondb_api
 
 api_url = 'https://api.steampowered.com/ISteamApps/GetAppList/v0002/?format=json'
-steamapi = os.path.join(os.path.dirname(__file__), 'steam_api.py')
 steamjson = os.path.join(os.path.dirname(__file__), 'steamapi.json')
 PDB = 'https://www.protondb.com/app/'
 
