@@ -1,7 +1,7 @@
 # Ulauncher ProtonDB Search
 
 <p align="center">
- <img src="https://user-images.githubusercontent.com/7719590/185564418-aff32ea1-df4b-4198-b8c7-f67d544b51c9.png" />
+ <img src="https://user-images.githubusercontent.com/7719590/185583814-2f1899c6-44b0-4842-9748-6d97a24902e3.png" />
 </p>
 
 # Installation
