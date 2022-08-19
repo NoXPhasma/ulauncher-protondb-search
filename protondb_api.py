@@ -57,7 +57,7 @@ def get_data_appid(query, num=5, err=10):
     list = []
     for i in range(1, len(json_list["applist"]['apps'])):
         el = json_list["applist"]['apps'][i]
-        if str(query) == str(el['appid']):
+        if str(query) in str(el['appid']):
             list.append([{'name': el['name'],
                         'appid': el['appid'], 'len': len(el['name'])}])
     # sort the list
